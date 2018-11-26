@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.AlbumDao">
+	<resultMap type="com.baizhi.entity.Album" id="album">
+		<id property="albumId" column="a_albumId"/>
+		<result property="albumTitle" column="a_albumTitle"/>
+		<result property="albumCover" column="a_albumCover"/>
+		<result property="albumCount" column="a_albumCount"/>
+		<result property="albumAuthor" column="a_albumAuthor"/>
+		<result property="albumBroadCast" column="a_albumBroadCast"/>
+		<result property="albumPublishDate" column="a_albumPublishDate"/>
+		<result property="albumBrief" column="a_albumBrief"/>
+		<result property="albumScore" column="a_albumScore"/>
+		<collection property="children" ofType="com.baizhi.entity.Chapter">
+			<id property="chapterId" column="c_chapterId"/>
+			<result property="chapterTitle" column="c_chapterTitle"/>
+			<result property="chapterSize" column="c_chapterSize"/>
+			<result property="chapterDuration" column="c_chapterDuration"/>
+			<result property="chapterDownloadPath" column="c_chapterDownloadPath"/>
+			<result property="chapterUploadDate" column="c_chapterUploadDate"/>
+		</collection>
+	</resultMap>
+	<select id="queryAll" resultMap="album">
+		select a.albumId  a_albumId,
+				a.albumTitle    a_albumTitle,
+				a.albumCover    a_albumCover,
+				a.albumCount    a_albumCount,
+				a.albumAuthor    a_albumAuthor,
+				a.albumBroadCast    a_albumBroadCast,
+				a.albumPublishDate   a_albumPublishDate,
+				a.albumBrief      a_albumBrief,
+				a.albumScore    a_albumScore,
+				c.chapterId    c_chapterId,
+				c.chapterTitle   c_chapterTitle,
+				c.chapterSize   c_chapterSize,
+				c.chapterDuration   c_chapterDuration,
+				c.chapterDownloadPath  c_chapterDownloadPath,
+				c.chapterUploadDate   c_chapterUploadDate
+			from cmfz_album a 
+			left join cmfz_chapter c
+			on a.albumId =c.albumId	
+				
+ 	</select>
+ 	<select id="count" resultType="Integer">
+ 		select count(*) from cmfz_album 
+ 	</select>
+ 	<delete id="delete">
+ 		delete from cmfz_album where albumId=#{albumId}
+ 	</delete>
+ 	<insert id="insert">
+ 		insert into cmfz_album 
+ 		values(#{albumId},#{albumTitle},#{albumCover},#{albumCount},#{albumAuthor},#{albumBroadCast},#{albumPublishDate},#{albumBrief},#{albumScore})
+ 	</insert>
+ 	<update id="updateCount">
+ 		update cmfz_album set albumCount=#{albumCount} 
+ 	</update>
+</mapper>

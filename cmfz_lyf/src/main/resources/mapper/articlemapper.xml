@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.ArticleDao">
+	<select id="queryAll" resultType="com.baizhi.entity.Article">
+		select * from cmfz_article 
+	</select>
+	<update id="update">
+		update cmfz_article set articleStatus=#{articleStatus} where articleId=#{articleId}
+	</update>
+</mapper>

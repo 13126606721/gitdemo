@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.CourseDao">
+	<resultMap type="com.baizhi.entity.Course" id="course">
+		<id property="courseId" column="c_courseId"/>
+		<result property="courseTitle" column="c_courseTitle"/>
+		<result property="courseMarking" column="c_courseMarking"/>
+		<result property="courseCreateTime" column="c_courseCreateTime"/>
+		<result property="courseStatus" column="c_courseStatus"/>
+		<association property="user" javaType="com.baizhi.entity.User">
+			<result property="userName" column="u_userName"/> 
+		</association>
+	</resultMap>
+	
+	<sql id="select">
+		select c.courseId  c_courseId,
+				c.courseTitle  c_courseTitle,
+				c.courseMarking  c_courseMarking,
+				c.courseCreateTime  c_courseCreateTime,
+				c.courseStatus    c_courseStatus,
+				u.userName   u_userName
+				from cmfz_course c
+				left join cmfz_user u
+				on c.userId=u.userId
+	</sql>
+	
+	<select id="queryByMarking" resultMap="course">
+		<include refid="select"/> where courseMarking='选修课'
+	</select>
+	<select id="queryAll" resultMap="course">
+		<include refid="select"/>
+	</select>
+	<insert id="insert">
+		insert into cmfz_course values(#{courseId},#{courseTitle},#{courseMarking},#{courseCreateTime},#{courseStatus},null)
+	</insert>
+	<update id="update">
+		update cmfz_course set courseStatus=#{courseStatus} where courseId=#{courseId}
+	</update>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.CounterDao">
+	<resultMap type="com.baizhi.entity.Counter" id="counter">
+		<id property="counterId" column="c_counterId"/>
+		<result property="counterTitle" column="c_counterTitle"/>
+		<result property="counterCount" column="c_counterCount"/>
+		<result property="counterCreateTime" column="c_counterCreateTime"/>
+		<association property="course" javaType="com.baizhi.entity.Course">
+			<result property="courseTitle" column="c1_courseTitle"/>
+		</association>
+		<association property="user" javaType="com.baizhi.entity.User">
+			<result property="userName" column="u_userName"/>
+		</association>
+	</resultMap>
+	<select id="queryAll" resultMap="counter">
+		select counterId c_counterId,
+				c.counterTitle   c_counterTitle,
+				c.counterCount   c_counterCount,
+				c.counterCreateTime   c_counterCreateTime,
+				c1.courseTitle   c1_courseTitle,
+				u.userName      u_userName
+				from cmfz_counter c
+				left join cmfz_course c1 on c.courseId=c1.courseId
+				left join cmfz_user   u  on c.userId=u.userId
+ 	</select>
+	
+</mapper>
