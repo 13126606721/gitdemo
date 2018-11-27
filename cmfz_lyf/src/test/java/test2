@@ -1,0 +1,6 @@
+public class{
+  public void test(){
+    system.out.print();
+  }
+
+}
