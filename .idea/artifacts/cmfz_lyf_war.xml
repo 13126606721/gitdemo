@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="cmfz_lyf:war">
+    <output-path>$PROJECT_DIR$/cmfz_lyf/target</output-path>
+    <root id="archive" name="cmfzms_gaozhy.war">
+      <element id="artifact" artifact-name="cmfz_lyf:war exploded" />
+    </root>
+  </artifact>
+</component>
