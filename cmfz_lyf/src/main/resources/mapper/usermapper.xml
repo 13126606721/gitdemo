@@ -13,7 +13,7 @@
 	</update>
 	 
 	 <insert id="insert">
-	 	insert into cmfz_user values(#{userPhone},#{userName},#{userPassword},#{userDharmaName},#{userSex},#{userSign},#{userProfile},#{userProvince},#{userCity}#{userStatus})
+	 	insert into cmfz_user values(#{userPhone},#{userName},#{userPassword},#{userDharmaName},#{userSex},#{userSign},#{userProfile},#{userProvince},#{userCity},#{userStatus})
 	 </insert>
 	 <select id="selectByName" resultType="com.baizhi.entity.User">
 	 	select * from cmfz_user where userName=#{userName} or userPassword=#{userPassword} 
