@@ -14,6 +14,7 @@ public class Student implements Serializable {
     public void setStudentId(String studentId) {
         this.studentId = studentId;
         System.out.println("SFSADFA");
+        System.out.println("SFSADFA");
     }
 
     public void setStudentName(String studentName) {
