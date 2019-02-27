@@ -5,7 +5,10 @@
   <groupId>com.baizhi</groupId>
   <artifactId>tao</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <modules>
+    <module>client</module>
+  </modules>
+  <packaging>pom</packaging>
 
   <description />
 
